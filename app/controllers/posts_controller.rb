@@ -54,9 +54,10 @@ class PostsController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     the_post = Post.where({ :id => the_id }).at(0)
+    b_id = the_post.board_id
 
     the_post.destroy
 
-    redirect_to("/posts", { :notice => "Post deleted successfully."} )
+    redirect_to("/boards/#{b_id}", { :notice => "Post deleted successfully."} )
   end
 end
